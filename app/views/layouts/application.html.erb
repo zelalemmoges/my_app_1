@@ -22,6 +22,26 @@
   </head>
 
   <body>
+    <header>
+      <h1> Todo Applicatio</h1>
+      <p>Visit count: <%= session[:visit_count] || 0 %></p>
+      <% current_hour = Time.current.hour %>
+      <% greeting =
+          if current_hour < 12
+            "Good morning"
+          elsif current_hour < 18
+            "Good afternoon"
+          else
+            "Good evening"
+          end
+      %>
+      <p><%= greeting %>!</p>
+   </header>
+   <main>
     <%= yield %>
+    </main>
+
+    <p>Current visit: <%= Time.current.strftime("%Y-%m-%d %H:%M:%S") %></p>
+    
   </body>
 </html>

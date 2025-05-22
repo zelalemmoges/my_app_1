@@ -1,5 +1,24 @@
 require "test_helper"
 
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [ 1400, 1400 ]
+RSpec.describe Post, type: :model do
+  it "is valid with valid attributes" do
+    post = Post.new(title: "Test", description: "Test desc", status: "active")
+    expect(post).to be_valid
+  end
+
+  it "is not valid without a title" do
+    post = Post.new(title: nil, description: "Test desc", status: "active")
+    expect(post).not_to be_valid
+  end
+
+  it "is not valid without a description" do
+    post = Post.new(title: "Test", description: nil, status: "active")
+    expect(post).not_to be_valid
+  end
+
+  it "is not valid without a status" do
+    post = Post.new(title: "Test", description: "Test desc", status: nil)
+    expect(post).not_to be_valid
+  end
 end
+
